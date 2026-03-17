@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Prithvi Tarale — Machine learning researcher borrowing from nature's playbook to build efficient, elegant AI solutions.">
+<meta name="author" content="Prithvi Tarale">
+<title>Prithvi Tarale — ML Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   CSS CUSTOM PROPERTIES
+   ======================================== */
+:root {
+  /* Dark theme (default) */
+  --bg-primary: #1A1614;
+  --bg-secondary: #252220;
+  --bg-tertiary: #2E2A27;
+  --text-primary: #F0E6D8;
+  --text-secondary: #9C8E80;
+  --text-tertiary: #6B5F54;
+  --accent-warm: #C4956A;
+  --accent-warm-hover: #D4A57A;
+  --accent-green: #8FA67A;
+  --accent-green-hover: #9FB68A;
+  --border-subtle: rgba(240, 230, 216, 0.08);
+  --border-medium: rgba(240, 230, 216, 0.12);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.4);
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme="light"] {
+  --bg-primary: #FAF6F1;
+  --bg-secondary: #F0EBE4;
+  --bg-tertiary: #E6E0D8;
+  --text-primary: #1A1614;
+  --text-secondary: #6B5F54;
+  --text-tertiary: #9C8E80;
+  --accent-warm: #B07D52;
+  --accent-warm-hover: #C48D62;
+  --accent-green: #6E8A5A;
+  --accent-green-hover: #7E9A6A;
+  --border-subtle: rgba(26, 22, 20, 0.06);
+  --border-medium: rgba(26, 22, 20, 0.1);
+  --shadow-card: 0 4px 24px rgba(26, 22, 20, 0.08);
+  --shadow-card-hover: 0 8px 40px rgba(26, 22, 20, 0.12);
+}
+
+/* ========================================
+   RESET & BASE
+   ======================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  transition: background-color 0.6s var(--transition-smooth), color 0.6s var(--transition-smooth);
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--accent-warm);
+  text-decoration: none;
+  transition: color 0.3s var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--accent-warm-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent-warm);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent-warm);
+  color: var(--bg-primary);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ========================================
+   LAYOUT UTILITIES
+   ======================================== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 3rem);
+}
+
+.section {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+}
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem 0;
+  transition: all 0.5s var(--transition-smooth);
+}
+
+.nav.scrolled {
+  background: rgba(26, 22, 20, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="light"] .nav.scrolled {
+  background: rgba(250, 246, 241, 0.85);
+}
+
+.nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  transition: color 0.3s var(--transition-smooth);
+}
+
+.nav-logo:hover {
+  color: var(--accent-warm);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  transition: color 0.3s var(--transition-smooth);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent-warm);
+  transition: width 0.4s var(--transition-smooth);
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border-medium);
+  color: var(--text-secondary);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-warm);
+  color: var(--accent-warm);
+  transform: rotate(30deg);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent-warm);
+  outline-offset: 3px;
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.5s var(--transition-spring);
+}
+
+.theme-toggle .sun-icon { display: none; }
+.theme-toggle .moon-icon { display: block; }
+[data-theme="light"] .theme-toggle .sun-icon { display: block; }
+[data-theme="light"] .theme-toggle .moon-icon { display: none; }
+
+/* Mobile nav */
+.nav-mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-mobile-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-primary);
+  margin: 5px 0;
+  transition: all 0.3s var(--transition-smooth);
+  border-radius: 1px;
+}
+
+@media (max-width: 768px) {
+  .nav-mobile-toggle {
+    display: block;
+  }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 280px;
+    background: var(--bg-secondary);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 2rem;
+    transition: right 0.5s var(--transition-smooth);
+    border-left: 1px solid var(--border-subtle);
+  }
+  .nav-links.open {
+    right: 0;
+  }
+  .nav-links a {
+    font-size: 1.1rem;
+  }
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s var(--transition-smooth);
+    z-index: 99;
+  }
+  .mobile-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-greeting {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  color: var(--accent-warm);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s var(--transition-smooth) 0.3s forwards;
+}
+
+.hero-name {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1.05;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s var(--transition-smooth) 0.5s forwards;
+}
+
+.hero-name .accent {
+  color: var(--accent-warm);
+  font-style: italic;
+}
+
+.hero-tagline {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s var(--transition-smooth) 0.7s forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent-warm);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s var(--transition-smooth) 0.9s forwards;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+}
+
+.hero-cta:hover .cta-arrow {
+  transform: translateY(4px);
+}
+
+.cta-arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--transition-smooth);
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--transition-smooth) 1.2s forwards;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--accent-warm), transparent);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--accent-warm));
+  animation: scrollDown 2s var(--transition-smooth) infinite;
+}
+
+@keyframes scrollDown {
+  0% { top: -60px; }
+  100% { top: 60px; }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   SECTION HEADERS
+   ======================================== */
+.section-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--accent-warm);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.section-description {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+/* ========================================
+   ABOUT SECTION
+   ======================================== */
+.about {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 5rem);
+  align-items: start;
+  margin-top: 3rem;
+}
+
+.about-text p {
+  color: var(--text-secondary);
+  font-weight: 300;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.about-text p strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.about-philosophy {
+  padding: 2rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-philosophy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--accent-warm), var(--accent-green));
+  border-radius: 3px 0 0 3px;
+}
+
+.about-philosophy blockquote {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.about-philosophy cite {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.05em;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  padding: 1.25rem;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.4s var(--transition-smooth);
+}
+
+.stat-item:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  color: var(--accent-warm);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ========================================
+   RESEARCH SECTION
+   ======================================== */
+.research {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.research-cards {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.research-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  transition: all 0.5s var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.research-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent-warm), var(--accent-green));
+  opacity: 0;
+  transition: opacity 0.5s var(--transition-smooth);
+}
+
+.research-card:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+.research-card:hover::before {
+  opacity: 1;
+}
+
+.research-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.research-venue {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-warm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  background: rgba(196, 149, 106, 0.1);
+  border: 1px solid rgba(196, 149, 106, 0.2);
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.research-card h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+.research-card-insight {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.research-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.highlight-tag {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent-green);
+  padding: 0.35rem 0.85rem;
+  background: rgba(143, 166, 122, 0.1);
+  border: 1px solid rgba(143, 166, 122, 0.15);
+  border-radius: 6px;
+}
+
+.research-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent-warm);
+  transition: all 0.3s var(--transition-smooth);
+}
+
+.research-card-link:hover {
+  gap: 0.85rem;
+}
+
+.research-card-link svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s var(--transition-smooth);
+}
+
+.research-card-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* Secondary research items */
+.research-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.research-secondary-item {
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  transition: all 0.4s var(--transition-smooth);
+}
+
+.research-secondary-item:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+}
+
+.research-secondary-item h4 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.research-secondary-item p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.research-secondary-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .research-secondary {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   EXPERIENCE SECTION
+   ======================================== */
+.experience {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.timeline {
+  margin-top: 3rem;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent-warm), var(--accent-green), var(--border-subtle));
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+  padding-left: 1.5rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0.5rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent-warm);
+  border: 2px solid var(--bg-primary);
+  transition: all 0.3s var(--transition-smooth);
+}
+
+.timeline-item:hover::before {
+  transform: scale(1.4);
+  box-shadow: 0 0 0 4px rgba(196, 149, 106, 0.2);
+}
+
+.timeline-date {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent-warm);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-role {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.15rem;
+}
+
+.timeline-org {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-desc {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-tertiary);
+  line-height: 1.65;
+}
+
+/* ========================================
+   NOW SECTION
+   ======================================== */
+.now {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.now-content {
+  margin-top: 3rem;
+  max-width: 650px;
+}
+
+.now-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.now-item:last-child {
+  border-bottom: none;
+}
+
+.now-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(196, 149, 106, 0.1);
+  border: 1px solid rgba(196, 149, 106, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent-warm);
+}
+
+.now-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.now-item h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.now-item p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.now-updated {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* ========================================
+   CONTACT SECTION
+   ======================================== */
+.contact {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.contact-content {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.contact-text p {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.contact-email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--bg-primary);
+  background: var(--accent-warm);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.4s var(--transition-smooth);
+  text-decoration: none;
+}
+
+.contact-email-btn:hover {
+  background: var(--accent-warm-hover);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(196, 149, 106, 0.3);
+}
+
+.contact-email-btn:focus-visible {
+  outline: 2px solid var(--accent-warm);
+  outline-offset: 3px;
+}
+
+.contact-email-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-link-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1.5rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  transition: all 0.4s var(--transition-smooth);
+  color: var(--text-primary);
+  text-decoration: none;
+  text-align: center;
+}
+
+.contact-link-item:hover {
+  border-color: var(--accent-warm);
+  transform: translateY(-3px);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-card);
+}
+
+.contact-link-item svg {
+  width: 20px;
+  height: 20px;
+  color: var(--accent-warm);
+  flex-shrink: 0;
+}
+
+.contact-link-item span {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.contact-link-item .link-label {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  display: block;
+}
+
+/* Resume download button */
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent-warm);
+  background: transparent;
+  border: 1px solid var(--accent-warm);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.4s var(--transition-smooth);
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+.resume-btn:hover {
+  background: var(--accent-warm);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+}
+
+.resume-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 768px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.footer-text .accent {
+  color: var(--accent-warm);
+}
+
+/* ========================================
+   SCROLL ANIMATIONS
+   ======================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ========================================
+   GENERATIVE HERO SVG
+   ======================================== */
+.hero-generative {
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55%;
+  max-width: 650px;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+[data-theme="light"] .hero-generative {
+  opacity: 0.08;
+}
+
+@media (max-width: 768px) {
+  .hero-generative {
+    width: 100%;
+    right: -20%;
+    opacity: 0.1;
+  }
+}
+
+/* ========================================
+   CUSTOM SCROLLBAR
+   ======================================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-tertiary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-warm);
+}
+
+/* ========================================
+   PAGE TRANSITION
+   ======================================== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s var(--transition-smooth), visibility 0.6s;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-text {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--accent-warm);
+  opacity: 0;
+  animation: loaderPulse 1s var(--transition-smooth) forwards;
+}
+
+@keyframes loaderPulse {
+  0% { opacity: 0; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1); }
+}
+</style>
+</head>
+<body>
+<!-- Page Loader -->
+<div class="page-loader" id="pageLoader" aria-hidden="true">
+  <span class="loader-text">PT</span>
+</div>
+
+<!-- Mobile Overlay -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- Navigation -->
+<nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <a href="#hero" class="nav-logo" aria-label="Prithvi Tarale - Home">PT</a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#collaborate">Collaborate</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </li>
+    </ul>
+    <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero section" id="hero">
+  <!-- Generative organic SVG background -->
+  <div class="hero-generative" aria-hidden="true">
+    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="branchGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#C4956A;stop-opacity:0.6"/>
+          <stop offset="100%" style="stop-color:#8FA67A;stop-opacity:0.3"/>
+        </linearGradient>
+      </defs>
+      <g id="organicNet" fill="none" stroke="url(#branchGrad)" stroke-width="1.2" stroke-linecap="round">
+        <!-- Main branches — evoke neural/natural branching -->
+        <path d="M300,580 Q290,500 280,420 Q270,380 240,340 Q210,300 180,280 Q150,260 100,250" opacity="0.7">
+          <animate attributeName="d" dur="12s" repeatCount="indefinite" values="M300,580 Q290,500 280,420 Q270,380 240,340 Q210,300 180,280 Q150,260 100,250;M300,580 Q295,495 285,415 Q275,375 248,338 Q215,305 185,282 Q155,258 105,248;M300,580 Q290,500 280,420 Q270,380 240,340 Q210,300 180,280 Q150,260 100,250"/>
+        </path>
+        <path d="M300,580 Q310,490 330,400 Q345,350 380,310 Q410,275 450,255 Q485,240 530,230" opacity="0.7">
+          <animate attributeName="d" dur="14s" repeatCount="indefinite" values="M300,580 Q310,490 330,400 Q345,350 380,310 Q410,275 450,255 Q485,240 530,230;M300,580 Q315,488 335,398 Q348,348 385,308 Q415,272 455,252 Q490,238 535,228;M300,580 Q310,490 330,400 Q345,350 380,310 Q410,275 450,255 Q485,240 530,230"/>
+        </path>
+        <path d="M300,580 Q300,480 300,380 Q300,320 290,260 Q280,200 260,150 Q240,100 210,60" opacity="0.5">
+          <animate attributeName="d" dur="16s" repeatCount="indefinite" values="M300,580 Q300,480 300,380 Q300,320 290,260 Q280,200 260,150 Q240,100 210,60;M300,580 Q302,478 304,378 Q305,318 295,258 Q285,198 265,148 Q245,98 215,58;M300,580 Q300,480 300,380 Q300,320 290,260 Q280,200 260,150 Q240,100 210,60"/>
+        </path>
+        <!-- Secondary branches -->
+        <path d="M280,420 Q250,400 220,380 Q190,370 150,370" opacity="0.4">
+          <animate attributeName="opacity" dur="6s" repeatCount="indefinite" values="0.4;0.6;0.4"/>
+        </path>
+        <path d="M330,400 Q360,380 390,380 Q420,385 450,400" opacity="0.4">
+          <animate attributeName="opacity" dur="7s" repeatCount="indefinite" values="0.4;0.55;0.4"/>
+        </path>
+        <path d="M300,380 Q320,340 350,310 Q380,290 420,280" opacity="0.35"/>
+        <path d="M300,380 Q270,350 240,330 Q210,320 170,320" opacity="0.35"/>
+        <path d="M290,260 Q320,240 360,230 Q400,225 440,230" opacity="0.3">
+          <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0.3;0.5;0.3"/>
+        </path>
+        <path d="M290,260 Q260,230 230,210 Q200,200 160,200" opacity="0.3"/>
+        <path d="M240,340 Q220,320 190,310 Q160,305 130,310 Q100,320 70,340" opacity="0.25"/>
+        <path d="M380,310 Q410,300 440,310 Q470,325 490,350" opacity="0.25"/>
+        <path d="M260,150 Q290,130 330,120 Q370,115 410,120" opacity="0.2"/>
+        <path d="M260,150 Q230,120 200,100 Q170,90 130,90" opacity="0.2"/>
+        <!-- Leaf nodes / endpoints -->
+        <circle cx="100" cy="250" r="3" fill="#C4956A" opacity="0.4">
+          <animate attributeName="r" dur="4s" repeatCount="indefinite" values="3;4.5;3"/>
+        </circle>
+        <circle cx="530" cy="230" r="3" fill="#C4956A" opacity="0.4">
+          <animate attributeName="r" dur="5s" repeatCount="indefinite" values="3;4.5;3"/>
+        </circle>
+        <circle cx="210" cy="60" r="3" fill="#8FA67A" opacity="0.4">
+          <animate attributeName="r" dur="4.5s" repeatCount="indefinite" values="3;5;3"/>
+        </circle>
+        <circle cx="150" cy="370" r="2.5" fill="#C4956A" opacity="0.3"/>
+        <circle cx="450" cy="400" r="2.5" fill="#8FA67A" opacity="0.3"/>
+        <circle cx="70" cy="340" r="2.5" fill="#C4956A" opacity="0.25"/>
+        <circle cx="490" cy="350" r="2.5" fill="#8FA67A" opacity="0.25"/>
+        <circle cx="130" cy="90" r="2" fill="#C4956A" opacity="0.2"/>
+        <circle cx="410" cy="120" r="2" fill="#8FA67A" opacity="0.2"/>
+        <circle cx="170" cy="320" r="2" fill="#C4956A" opacity="0.2"/>
+        <circle cx="420" cy="280" r="2" fill="#8FA67A" opacity="0.2"/>
+        <circle cx="160" cy="200" r="2" fill="#C4956A" opacity="0.2"/>
+        <circle cx="440" cy="230" r="2" fill="#8FA67A" opacity="0.2"/>
+        <!-- Central trunk pulse -->
+        <circle cx="300" cy="580" r="5" fill="#C4956A" opacity="0.5">
+          <animate attributeName="r" dur="3s" repeatCount="indefinite" values="5;7;5"/>
+          <animate attributeName="opacity" dur="3s" repeatCount="indefinite" values="0.5;0.7;0.5"/>
+        </circle>
+      </g>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-greeting">Machine Learning Researcher</p>
+      <h1 class="hero-name">Prithvi <span class="accent">Tarale</span></h1>
+      <p class="hero-tagline">I love borrowing from biological principles while designing efficient and elegant solutions for foundation models, lifelong learning, and beyond.</p>
+      <button class="hero-cta" onclick="document.getElementById('research').scrollIntoView({behavior:'smooth'})">
+        Explore my work <span class="cta-arrow" aria-hidden="true">&#8595;</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-scroll-indicator" aria-hidden="true">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about section" id="about">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Building AI to<br>mimic Nature</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="reveal reveal-delay-1">I'm a fourth-year PhD student in Computer Science at the <strong>University of Massachusetts Amherst</strong>, advised by Dr. Sunghoon Ivan Lee. Before this, I studied CS at the <strong>University of Washington</strong>.</p>
+        <p class="reveal reveal-delay-2">I believe nature solves problems in the most energy-efficient way possible, and that makes it the best place to find hypotheses for machine learning. Whether it's building <strong>bio-inspired foundation models</strong> for wearable sensors, designing <strong>decentralized multi-agent learning frameworks</strong>, or optimizing aircraft materials at Boeing, the through-line is the same: find how nature already solved it, then formalize that into a framework that works at scale. In my experience, the biological inspiration has meant smaller, faster, and more data-efficient ML systems than conventional approaches.</p>
+      </div>
+      <div>
+        <div class="about-stats reveal reveal-delay-2">
+          <div class="stat-item">
+            <span class="stat-number">4.0</span>
+            <span class="stat-label">PhD GPA</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Publications</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">1</span>
+            <span class="stat-label">Patent Filing</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Years in ML</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Research Section -->
+<section class="research section" id="research">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Research</p>
+      <h2 class="section-title">Selected work</h2>
+    </div>
+
+    <div class="research-cards">
+      <!-- Bio-PM Paper -->
+      <div class="research-card reveal reveal-delay-1">
+        <div class="research-card-header">
+          <div>
+            <h3>Bio-Inspired Self-Supervised Learning for Wrist-worn IMU Signals</h3>
+          </div>
+          <span class="research-venue">ICML 2026 · Under Review</span>
+        </div>
+        <p class="research-card-insight">Wrist motion is composed of elementary kinematic units called submovements — a principle from motor control theory. I used this to rethink how we tokenize IMU signals, treating movement segments as "words" for a Transformer to reason over. The result: a foundation model pretrained on 28,000 hours of wearable data from 11,000 participants that outperforms every existing self-supervised approach for human activity recognition.</p>
+        <div class="research-highlights">
+          <span class="highlight-tag">+10–15% over SOTA</span>
+          <span class="highlight-tag">5× smaller model</span>
+          <span class="highlight-tag">Bio-inspired tokenization</span>
+        </div>
+        <a href="#" class="research-card-link" aria-label="Read Bio-PM paper">
+          Read the paper <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <!-- PEEPLL Paper -->
+      <div class="research-card reveal reveal-delay-2">
+        <div class="research-card-header">
+          <div>
+            <h3>Distributed Multi-Agent Lifelong Learning (PEEPLL)</h3>
+          </div>
+          <span class="research-venue">TMLR 2025 · Published</span>
+        </div>
+        <p class="research-card-insight">What if AI agents could learn from each other instead of relying on expensive labeled data? I designed the first framework for decentralized multi-agent lifelong learning — agents that autonomously identify what they don't know, ask peers for help, and selectively learn from noisy responses. The framework includes a novel uncertainty quantification method using Variational Autoencoders that outperforms traditional entropy-based approaches.</p>
+        <div class="research-highlights">
+          <span class="highlight-tag">17–20% over single-agent SOTA</span>
+          <span class="highlight-tag">First distributed MALL framework</span>
+          <span class="highlight-tag">Novel uncertainty via VAE</span>
+        </div>
+        <a href="https://openreview.net/forum?id=IIVr4JHu3Oi" class="research-card-link" target="_blank" rel="noopener" aria-label="Read PEEPLL paper on OpenReview">
+          Read the paper <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Secondary research -->
+    <div class="research-secondary">
+      <div class="research-secondary-item reveal reveal-delay-1">
+        <p class="research-secondary-label">Industry · Patent</p>
+        <h4>Neural Network Optimization for Aircraft Materials</h4>
+        <p>Built an iterative neural network algorithm with Finite Element simulation in the loop to find optimal parameters for aircraft materials at Boeing Advanced Research Center. The work led to a patent filing by Boeing.</p>
+      </div>
+      <div class="research-secondary-item reveal reveal-delay-2">
+        <p class="research-secondary-label">Project · 2023</p>
+        <h4>Resilient Multi-Modal Learning with Missing Modalities</h4>
+        <p>Designed a branched VAE and training regime to handle missing modalities during pre-training by reconstructing one modality from others. Improved baseline by 223%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience Section -->
+<section class="experience section" id="experience">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title">Where I've built things</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal reveal-delay-1">
+        <p class="timeline-date">Jan 2025 — Present</p>
+        <h3 class="timeline-role">Research Assistant, PhD</h3>
+        <p class="timeline-org">Advanced Human & Health Analytics Lab · UMass Amherst</p>
+        <p class="timeline-desc">Building bio-inspired foundation models for wearable IMU data. Submitted Bio-PM to ICML 2026.</p>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <p class="timeline-date">Sep 2022 — Dec 2024</p>
+        <h3 class="timeline-role">Research Assistant, PhD</h3>
+        <p class="timeline-org">BINDS Lab · UMass Amherst · GPA: 4.0/4.0</p>
+        <p class="timeline-desc">Designed the first framework for distributed multi-agent lifelong learning (PEEPLL). Published in TMLR 2025.</p>
+      </div>
+      <div class="timeline-item reveal reveal-delay-3">
+        <p class="timeline-date">Oct 2020 — May 2022</p>
+        <h3 class="timeline-role">Machine Learning Researcher</h3>
+        <p class="timeline-org">Boeing Advanced Research Center · Seattle, WA</p>
+        <p class="timeline-desc">Built an iterative neural network with Finite Element simulation to optimize aircraft material parameters. Work led to a patent filing by Boeing.</p>
+      </div>
+      <div class="timeline-item reveal reveal-delay-4">
+        <p class="timeline-date">Oct 2020 — Oct 2021</p>
+        <h3 class="timeline-role">AI Student Researcher</h3>
+        <p class="timeline-org">University of Washington · Seattle, WA</p>
+        <p class="timeline-desc">Enabled explainable AI customization through human-centric language. Trained a 90%-accurate few-shot classifier using SciBERT and RNN-attention.</p>
+      </div>
+      <div class="timeline-item reveal">
+        <p class="timeline-date">May 2021 — Jul 2021</p>
+        <h3 class="timeline-role">Research Fellow</h3>
+        <p class="timeline-org">Purdue University · Summer Undergraduate Research Fellowship</p>
+        <p class="timeline-desc">Predicted bugs in QT/OpenStack scripts. Measured fairness variance across identically trained models. Accepted to SURF Symposium.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Collaborate Section -->
+<section class="now section" id="collaborate">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Collaborate</p>
+      <h2 class="section-title">Collaborations!</h2>
+    </div>
+
+    <div class="now-content">
+      <p class="reveal reveal-delay-1" style="font-size:1.05rem;font-weight:300;color:var(--text-secondary);line-height:1.85;margin-bottom:1.5rem;">I love collaborating with and mentoring MS students. If you're interested in working on any of the areas below, I'd love to hear from you. Reach out and let's talk.</p>
+      <div class="now-item reveal reveal-delay-2">
+        <div class="now-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <h3>Foundation Models</h3>
+          <p>Self-supervised representation learning, bio-inspired tokenization, and efficient pretraining strategies for time-series and sensor data.</p>
+        </div>
+      </div>
+      <div class="now-item reveal reveal-delay-3">
+        <div class="now-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div>
+          <h3>ML for Health</h3>
+          <p>Clinical applications, digital biomarkers, motor impairment detection, and wearable sensor analytics for healthcare diagnostics.</p>
+        </div>
+      </div>
+      <div class="now-item reveal reveal-delay-4">
+        <div class="now-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <h3>Lifelong Learning & Multi-Agent Systems</h3>
+          <p>Distributed learning, uncertainty quantification, and designing frameworks for agents that learn collaboratively in dynamic environments.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Contact</p>
+    </div>
+
+    <div class="contact-links reveal reveal-delay-1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;max-width:700px;">
+      <a href="mailto:ptarale@umass.edu" class="contact-link-item" aria-label="Send email to Prithvi Tarale">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          <span>ptarale@umass.edu</span>
+          <span class="link-label">Email</span>
+        </div>
+      </a>
+      <a href="https://scholar.google.com" class="contact-link-item" target="_blank" rel="noopener" aria-label="Google Scholar profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <div>
+          <span>Google Scholar</span>
+          <span class="link-label">Publications & citations</span>
+        </div>
+      </a>
+      <a href="https://github.com/Prithvitarale" class="contact-link-item" target="_blank" rel="noopener" aria-label="GitHub profile">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <div>
+          <span>GitHub</span>
+          <span class="link-label">Code & projects</span>
+        </div>
+      </a>
+      <a href="https://linkedin.com" class="contact-link-item" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <div>
+          <span>LinkedIn</span>
+          <span class="link-label">Professional network</span>
+        </div>
+      </a>
+      <a href="#" class="contact-link-item" id="resumeDownload" aria-label="Download resume as PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <div>
+          <span>Resume</span>
+          <span class="link-label">Download PDF</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">
+      &copy; 2026 Prithvi Tarale
+    </p>
+    <p class="footer-text">
+      Built with <span class="accent">intention</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ========================================
+  // PAGE LOADER
+  // ========================================
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.getElementById('pageLoader').classList.add('hidden');
+    }, 600);
+  });
+
+  // ========================================
+  // THEME TOGGLE
+  // ========================================
+  var themeToggle = document.getElementById('themeToggle');
+  var html = document.documentElement;
+
+  // Check for saved preference
+  var savedTheme = null;
+  try { savedTheme = window.localStorage.getItem('theme'); } catch(e) {}
+  if (savedTheme) {
+    html.setAttribute('data-theme', savedTheme);
+  }
+
+  themeToggle.addEventListener('click', function() {
+    var current = html.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    try { window.localStorage.setItem('theme', next); } catch(e) {}
+  });
+
+  // ========================================
+  // NAVIGATION SCROLL EFFECT
+  // ========================================
+  var nav = document.getElementById('mainNav');
+  var lastScroll = 0;
+
+  window.addEventListener('scroll', function() {
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollY > 80) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    lastScroll = scrollY;
+  }, { passive: true });
+
+  // ========================================
+  // MOBILE NAVIGATION
+  // ========================================
+  var mobileToggle = document.getElementById('mobileToggle');
+  var navLinks = document.getElementById('navLinks');
+  var mobileOverlay = document.getElementById('mobileOverlay');
+
+  function closeMobileNav() {
+    navLinks.classList.remove('open');
+    mobileOverlay.classList.remove('active');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  mobileToggle.addEventListener('click', function() {
+    var isOpen = navLinks.classList.contains('open');
+    if (isOpen) {
+      closeMobileNav();
+    } else {
+      navLinks.classList.add('open');
+      mobileOverlay.classList.add('active');
+      mobileToggle.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  mobileOverlay.addEventListener('click', closeMobileNav);
+
+  // Close mobile nav on link click
+  var navLinkItems = navLinks.querySelectorAll('a');
+  for (var i = 0; i < navLinkItems.length; i++) {
+    navLinkItems[i].addEventListener('click', closeMobileNav);
+  }
+
+  // ========================================
+  // SCROLL REVEAL ANIMATIONS
+  // ========================================
+  var revealElements = document.querySelectorAll('.reveal');
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  revealElements.forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // ========================================
+  // SMOOTH SCROLL FOR NAV LINKS
+  // ========================================
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        var offset = 80;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ========================================
+  // ACTIVE NAV LINK HIGHLIGHTING
+  // ========================================
+  var sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', function() {
+    var scrollY = window.pageYOffset;
+    sections.forEach(function(section) {
+      var sectionTop = section.offsetTop - 150;
+      var sectionHeight = section.offsetHeight;
+      var sectionId = section.getAttribute('id');
+      var link = document.querySelector('.nav-links a[href="#' + sectionId + '"]');
+      if (link) {
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          link.style.color = 'var(--text-primary)';
+        } else {
+          link.style.color = '';
+        }
+      }
+    });
+  }, { passive: true });
+
+})();
+</script>
+</body>
+</html>
